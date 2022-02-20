@@ -1,0 +1,16 @@
+{
+    "name": "electron",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "start_dev": "NODE_ENV=development electron ."
+
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^17.0.0"
+    }
+}

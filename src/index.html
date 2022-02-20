@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
+
+    <title>Hello World!</title>
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+    Estamos utilizando Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, e Electron <span id="electron-version"></span>.
+    <h3 id="processor"></h3>
+    <button onclick="sendNewWindowMessage()">Criar nova Janela</button>
+
+    <script>
+        const {
+            ipcRenderer
+        } = require("electron");
+        const processor = document.querySelector("#processor");
+
+        //Front receiving message from Back
+        ipcRenderer.on('cpu_name', (e, value) => {
+            processor.innerHTML = value;
+        });
+
+        //Front sending message to back
+        function sendNewWindowMessage() {
+            ipcRenderer.send("open_new_window")
+        }
+    </script>
+</body>
+
+</html>
